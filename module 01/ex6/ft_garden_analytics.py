@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 class Plant:
     def __init__(self, name: str, height: float, age: int) -> None:
         self.name = name
@@ -8,22 +10,18 @@ class Plant:
         self._show_count = 0
 
     def grow(self, amount: float) -> None:
-        """Grow the plant by amount."""
         self.height += amount
         self._grow_count += 1
 
     def age_days(self, days: int) -> None:
-        """Age the plant by days."""
         self.age += days
         self._age_count += 1
 
     def get_info(self) -> None:
-        """Display plant info."""
         self._show_count += 1
         print(f"{self.name}: {self.height}cm, {self.age} days old")
 
     def get_stats(self) -> None:
-        """Display plant statistics."""
         print(
             f"Stats: {self._grow_count} grow, "
             f"{self._age_count} age, {self._show_count} show"
@@ -31,7 +29,6 @@ class Plant:
 
     @staticmethod
     def is_more_than_a_year(days: int) -> bool:
-        """Check if days is more than a year."""
         return days > 365
 
 
@@ -44,11 +41,9 @@ class FloweringPlant(Plant):
         self.blooming = False
 
     def bloom(self) -> None:
-        """Make the flower bloom."""
         self.blooming = True
 
     def get_info(self) -> None:
-        """Display flowering plant info."""
         super().get_info()
         print(f" Color: {self.color}")
         status = (
@@ -72,22 +67,18 @@ class PrizeFlower(FloweringPlant):
         self.seeds = seeds
 
     def get_info(self) -> None:
-        """Display prize flower info."""
         super().get_info()
         print(f" Seeds: {self.seeds}")
 
     def grow(self, amount: float) -> None:
-        """Grow and add seeds."""
         super().grow(amount)
         self.seeds += int(amount)
 
     def age_days(self, days: int) -> None:
-        """Age and add seeds."""
         super().age_days(days)
         self.seeds += 12
 
     def get_stats(self) -> None:
-        """Display prize flower statistics."""
         print(
             f"Stats: {self._grow_count} grow, "
             f"{self._age_count} age, {self._show_count} show"
@@ -103,12 +94,10 @@ class TreePlant(Plant):
         self._shade_count = 0
 
     def get_info(self) -> None:
-        """Display tree info."""
         super().get_info()
         print(f" Trunk diameter: {self.trunk_diameter}cm")
 
     def produce_shade(self) -> None:
-        """Display shade produced by the tree."""
         self._shade_count += 1
         print(
             f"Tree {self.name} now produces a shade of "
@@ -116,7 +105,6 @@ class TreePlant(Plant):
         )
 
     def get_stats(self) -> None:
-        """Display tree statistics."""
         print(
             f"Stats: {self._grow_count} grow, "
             f"{self._age_count} age, {self._show_count} show "
@@ -125,7 +113,6 @@ class TreePlant(Plant):
 
 
 def ft_garden_analytics() -> None:
-    """Demonstrate garden analytics."""
     print("=== Garden statistics ===")
     print("=== Check year-old")
     print(

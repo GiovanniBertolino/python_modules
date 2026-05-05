@@ -1,6 +1,8 @@
+#!/usr/bin/env python3
+
 class SecurePlant:
     def __init__(self, name: str, height: float, age: int) -> None:
-        self.name = name
+        self.name = name.capitalize()
         self._height = float(height)
         self._age = (age)
         print(
