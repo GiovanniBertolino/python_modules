@@ -31,6 +31,10 @@ class Plant:
     def is_more_than_a_year(days: int) -> bool:
         return days > 365
 
+    @classmethod
+    def create_anonymous(cls) -> "Plant":
+        return cls("Unknown plant", 0, 0)
+
 
 class FloweringPlant(Plant):
     def __init__(
@@ -154,7 +158,7 @@ def ft_garden_analytics() -> None:
     print("[statistics for Sunflower]")
     sunflower.get_stats()
     print("\n=== Anonymous")
-    unknown = Plant("Unknown plant", 0, 0)
+    unknown = Plant.create_anonymous()
     unknown.get_info()
     print("[statistics for Unknown plant]")
     unknown.get_stats()
