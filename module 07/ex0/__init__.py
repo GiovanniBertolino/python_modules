@@ -1,2 +1,4 @@
-from .factory import CreatureFactory, FlameFactory, AquaFactory  # noqa: F401
-from .creatures import Creature  # noqa: F401
+from .factory import CreatureFactory, FlameFactory, AquaFactory
+from .creatures import Creature
+
+__all__ = ["CreatureFactory", "FlameFactory", "AquaFactory", "Creature"]
