@@ -1,31 +1,31 @@
-from ex0 import FlameFactory, AquaFactory
+from ex0 import FlameFactory, AquaFactory, CreatureFactory, Creature
 
 
-def battle() -> None:
-    print("Testing factory")
-    flame = FlameFactory()
-    flameling = flame.create_base()
-    pyrodon = flame.create_evolved()
-    print(flameling.describe())
-    print(flameling.attack())
-    print(pyrodon.describe())
-    print(pyrodon.attack())
+def factory(object_factory: CreatureFactory) -> None:
     print("\nTesting factory")
-    aqua = AquaFactory()
-    aquabub = aqua.create_base()
-    torragon = aqua.create_evolved()
-    print(aquabub.describe())
-    print(aquabub.attack())
-    print(torragon.describe())
-    print(torragon.attack())
+    base = object_factory.create_base()
+    evolved = object_factory.create_evolved()
+    print(base.describe())
+    print(base.attack())
+    print(evolved.describe())
+    print(evolved.attack())
+
+def battle(creature1: Creature, creature2: Creature) -> None:
     print("\nTesting battle")
     print(
-        f"{flameling.describe()}\n vs.\n{aquabub.describe()}"
+        f"{creature1.describe()}\n vs.\n{creature2.describe()}"
         )
     print(" fight!")
-    print(flameling.attack())
-    print(aquabub.attack())
+    print(creature1.attack())
+    print(creature2.attack())
+
+
+def main() -> None:
+    factory(FlameFactory())
+    factory(AquaFactory())
+    battle(FlameFactory().create_base(), AquaFactory().create_base())
+
 
 
 if __name__ == "__main__":
-    battle()
+    main()
