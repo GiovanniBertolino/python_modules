@@ -6,10 +6,12 @@ import os
 def oracle() -> None:
     print("\nORACLE STATUS: Reading the Matrix...\n")
     print("Configuration loaded:")
-    load = load_dotenv()
+    load_dotenv()
+    error = False
 
     matrix_mode = os.getenv('MATRIX_MODE')
     if matrix_mode is None or matrix_mode == "":
+        error = True
         raise ValueError("Mode: [MISSING]")
     elif matrix_mode in ("development", "production"):
         print(f"Mode: {matrix_mode}")
@@ -18,6 +20,7 @@ def oracle() -> None:
 
     database_url = os.getenv('DATABASE_URL')
     if database_url is None or database_url == "":
+        error = True
         if matrix_mode == "development":
             print("Database: [MISSING]")
         if matrix_mode == "production":
@@ -30,6 +33,7 @@ def oracle() -> None:
 
     api_key = os.getenv('API_KEY')
     if api_key is None or api_key == "":
+        error = True
         if matrix_mode == "development":
             print("API Access: [MISSING]")
         if matrix_mode == "production":
@@ -39,6 +43,7 @@ def oracle() -> None:
 
     log_level = os.getenv('LOG_LEVEL')
     if log_level is None or log_level == "":
+        error = True
         if matrix_mode == "development":
             print("Log Level: [MISSING]")
         if matrix_mode == "production":
@@ -48,6 +53,7 @@ def oracle() -> None:
 
     zion_endpoint = os.getenv('ZION_ENDPOINT')
     if zion_endpoint is None or zion_endpoint == "":
+        error = True
         if matrix_mode == "development":
             print("Zion Network: [MISSING]\n")
         if matrix_mode == "production":
@@ -57,10 +63,10 @@ def oracle() -> None:
 
     print("Environment security check:")
     print("[OK] No hardcoded secrets detected")
-    if load:
-        print("[OK] .env file properly configured")
-    else:
+    if error:
         print("[ERROR] .env file not properly configured")
+    else:
+        print("[OK] .env file properly configured")
     print("[OK] Production overrides available")
     print("The Oracle sees all configurations.")
 
