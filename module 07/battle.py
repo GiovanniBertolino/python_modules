@@ -1,4 +1,4 @@
-from ex0 import FlameFactory, AquaFactory, CreatureFactory, Creature
+from ex0 import FlameFactory, AquaFactory, CreatureFactory
 
 
 def factory(object_factory: CreatureFactory) -> None:
@@ -11,8 +11,10 @@ def factory(object_factory: CreatureFactory) -> None:
     print(evolved.attack())
 
 
-def battle(creature1: Creature, creature2: Creature) -> None:
+def battle(factory1: CreatureFactory, factory2: CreatureFactory) -> None:
     print("\nTesting battle")
+    creature1 = factory1.create_base()
+    creature2 = factory2.create_base()
     print(
         f"{creature1.describe()}\n vs.\n{creature2.describe()}"
         )
@@ -24,7 +26,7 @@ def battle(creature1: Creature, creature2: Creature) -> None:
 def main() -> None:
     factory(FlameFactory())
     factory(AquaFactory())
-    battle(FlameFactory().create_base(), AquaFactory().create_base())
+    battle(FlameFactory(), AquaFactory())
 
 
 if __name__ == "__main__":
