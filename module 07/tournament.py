@@ -24,8 +24,7 @@ def battle(opponants: list[tuple[CreatureFactory, BattleStrategy]]) -> None:
                 return
 
 
-if __name__ == "__main__":
-
+def main() -> None:
     # Factory
     flame_factory = FlameFactory()
     aqua_factory = AquaFactory()
@@ -73,3 +72,6 @@ if __name__ == "__main__":
     print("*** Tournament ***")
     print(f"{len(tournament2)} opponents involved\n")
     battle(tournament2)
+
+if __name__ == "__main__":
+    main()
