@@ -73,5 +73,6 @@ def main() -> None:
     print(f"{len(tournament2)} opponents involved\n")
     battle(tournament2)
 
+
 if __name__ == "__main__":
     main()
