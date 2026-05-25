@@ -34,7 +34,8 @@ def loading() -> None:
 
     try:
         numpy = importlib.import_module("numpy")
-        print(f"[OK] numpy ({numpy.__version__}) - Numerical computation ready")
+        numpy_v = numpy.__version__
+        print(f"[OK] numpy  ({numpy_v}) - Numerical computation ready")
     except ImportError:
         print("[MISSING] numpy - install with: pip install numpy")
 
@@ -42,7 +43,8 @@ def loading() -> None:
         matplotlib = importlib.import_module("matplotlib")
         pyplot = importlib.import_module("matplotlib.pyplot")
         plt = pyplot
-        print(f"[OK] matplotlib ({matplotlib.__version__}) - Visualization ready\n")
+        matplotlib_v = matplotlib.__version__
+        print(f"[OK] matplotlib  ({matplotlib_v}) - Visualization ready\n")
     except ImportError:
         print("[MISSING] matplotlib - install with: pip install matplotlib\n")
 
@@ -52,6 +54,11 @@ def loading() -> None:
         print("Installing with pip: pip install -r requirements.txt")
         print("Installing with Poetry: poetry install")
         sys.exit(1)
+
+    assert pandas is not None
+    assert numpy is not None
+    assert matplotlib is not None
+    assert plt is not None
 
     show_pip_vs_poetry()
     print("Analyzing Matrix data...")
