@@ -3,43 +3,51 @@ import importlib
 
 
 def show_pip_vs_poetry() -> None:
-    print("\nComparison of dependency managers:")
-    print("\npip    : simple, universal, installs in the active environment")
-    print("poetry : manages specific versions, automatic file locking")
-    print("pip use the file: 'requirements.txt'")
-    print("poetry use the file: 'pyproject.toml'\n")
-    return
+    print("\nComparison of dependency managers:\n")
+
+    print("pip:")
+    print("- installs packages in the current environment")
+    print("- uses requirements.txt")
+    print("- simpler and widely used")
+    print("- no automatic dependency locking\n")
+
+    print("poetry:")
+    print("- manages virtual environments automatically")
+    print("- uses pyproject.toml")
+    print("- locks exact versions with poetry.lock")
+    print("- better dependency resolution\n")
 
 
 def loading() -> None:
     print("\nLOADING STATUS: Loading programs...\n")
-    print("Checking dependancies:")
+    print("Checking dependencies:")
     pandas = None
     numpy = None
     matplotlib = None
+    pyplot = None
+    plt = None
     try:
         pandas = importlib.import_module("pandas")
-        print(f"[OK] pandas  ({pandas.__version__}) - Data manpulation ready")
+        print(f"[OK] pandas ({pandas.__version__}) - Data manipulation ready")
     except ImportError:
         print("[MISSING] pandas - install with: pip install pandas")
 
     try:
         numpy = importlib.import_module("numpy")
-        numpy_v = numpy.__version__
-        print(f"[OK] numpy  ({numpy_v}) - Numerical computation ready")
+        print(f"[OK] numpy ({numpy.__version__}) - Numerical computation ready")
     except ImportError:
         print("[MISSING] numpy - install with: pip install numpy")
 
     try:
         matplotlib = importlib.import_module("matplotlib")
-        matplotlib.pyplot = importlib.import_module("matplotlib.pyplot")
-        matplotlib_v = matplotlib.__version__
-        print(f"[OK] matplotlib  ({matplotlib_v}) - Visualization ready\n")
+        pyplot = importlib.import_module("matplotlib.pyplot")
+        plt = pyplot
+        print(f"[OK] matplotlib ({matplotlib.__version__}) - Visualization ready\n")
     except ImportError:
         print("[MISSING] matplotlib - install with: pip install matplotlib\n")
 
-    dependancies = [pandas, numpy, matplotlib]
-    if any(e is None for e in dependancies):
+    dependencies = [pandas, numpy, matplotlib]
+    if any(e is None for e in dependencies):
         print("Missing dependencies, install them first:")
         print("Installing with pip: pip install -r requirements.txt")
         print("Installing with Poetry: poetry install")
@@ -47,11 +55,10 @@ def loading() -> None:
 
     show_pip_vs_poetry()
     print("Analyzing Matrix data...")
-    datas = numpy.array(numpy.random.randint(99, size=(1000)))
+    data = numpy.random.randint(0, 100, size=1000)
     print("Processing 1000 data points...")
-    dataframe = pandas.DataFrame(datas)
+    dataframe = pandas.DataFrame({"matrix_signal": data})
     print("Generating visualization...\n")
-    plt = matplotlib.pyplot
     plt.plot(dataframe)
     plt.title('matrix_analysis')
     plt.xlabel("Index")

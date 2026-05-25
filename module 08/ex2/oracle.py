@@ -11,7 +11,6 @@ def oracle() -> None:
 
     matrix_mode = os.getenv('MATRIX_MODE')
     if matrix_mode is None or matrix_mode == "":
-        error = True
         raise ValueError("Mode: [MISSING]")
     elif matrix_mode in ("development", "production"):
         print(f"Mode: {matrix_mode}")
@@ -71,9 +70,13 @@ def oracle() -> None:
     print("The Oracle sees all configurations.")
 
 
-if __name__ == "__main__":
+def main() -> None:
     try:
         oracle()
     except ValueError as e:
         print(f"[ERROR] {e}")
         sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
