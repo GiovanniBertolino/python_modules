@@ -56,6 +56,7 @@ def main() -> None:
     print("Valid contact report:")
     print(f"ID: {aliencontact.contact_id}")
     print(f"Type: {aliencontact.contact_type.value}")
+    print(f"Location: {aliencontact.location}")
     print(f"Signal: {aliencontact.signal_strength}/10")
     print(f"Duration: {aliencontact.duration_minutes} minutes")
     print(f"Witnesses: {aliencontact.witness_count}")
