@@ -20,9 +20,9 @@ def spell_reducer(spells: list[int], operation: str) -> int:
 
 def partial_enchanter(base_enchantment: Callable) -> dict[str, Callable]:
     fire = functools.partial(base_enchantment, 50, "Fire")
-    Water = functools.partial(base_enchantment, 50, "Water")
-    Wood = functools.partial(base_enchantment, 50, "Wood")
-    return {"fire": fire, "Water": Water, "Wood": Wood}
+    water = functools.partial(base_enchantment, 50, "Water")
+    wood = functools.partial(base_enchantment, 50, "Wood")
+    return {"fire": fire, "water": water, "wood": wood}
 
 
 @functools.lru_cache
@@ -34,19 +34,19 @@ def memoized_fibonacci(n: int) -> int:
 
 def spell_dispatcher() -> Callable[[Any], str]:
     @functools.singledispatch
-    def dispatcher(arg) -> None:
+    def dispatcher(arg) -> str:
         return "Unknown spell type"
 
     @dispatcher.register(int)
-    def _(arg) -> None:
+    def _(arg) -> str:
         return f"Damage spell: {arg} damage"
 
     @dispatcher.register(str)
-    def _(arg) -> None:
+    def _(arg) -> str:
         return f"Enchantment: {arg}"
 
     @dispatcher.register(list)
-    def _(arg) -> None:
+    def _(arg) -> str:
         return f"Multi-cast: {len(arg)} spells"
     return dispatcher
 
